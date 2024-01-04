@@ -1,0 +1,80 @@
+#heading{
+    text-align: center;
+    font-family: sans-serif;
+    margin-top: 4rem;
+}
+#score{
+    text-align: center;
+    font-family: sans-serif;
+    margin-top: 2rem;
+}
+.grp-btn{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+#inner-grp button{
+    width:40px;
+    height:40px;
+    font-size: 1rem;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+
+#wik{
+background-color: red;
+color: white;
+}
+#comment-sec{
+    margin-top: 3rem ; 
+    text-align: center;
+ }
+ .box{
+    width:350px ;
+    height: 50px;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 20px;
+    margin: 0px!important;
+ }
+ #submit-btn{
+    width: 90px;
+    height: 55px;
+    position: relative;
+    top:-2.8px;
+    font-family: sans-serif;
+    font-size: 1rem;
+ }
+ #number-box{
+font-weight: 600; 
+}
+.content{
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+}
+.score-content{
+    border: 2px solid black;
+    border-radius: 50%;
+    padding: 9px ;
+    display: inline-block;
+    width:25px;
+    background-color: lightgreen;
+}
+.score-content-s{
+    border: 2px solid black;
+    border-radius: 50%;
+    padding: 9px ;
+    display: inline-block;
+    width:25px;
+}
+.score-content-w{
+    border: 2px solid black;
+    border-radius: 50%;
+    padding: 9px ;
+    display: inline-block;
+    width:25px;
+    background-color: red;
+    color: white;
+}

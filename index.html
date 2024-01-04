@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel = "stylesheet" href="index.css" />
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score-keeper-app</title>
+</head>
+<body>
+    <div id ="root"></div>
+
+    <script type="text/babel">
+let setvalue = '' ;
+let tempscore = 0;
+let tempw = 0 ;
+let score = 0 ;
+let w = 0;
+function update(n) {
+      setvalue = n ;
+      if( n == -1 ) {
+         tempw++;
+        setvalue="W";
+      }
+      else{
+        tempscore += n;
+        if( tempw >= 10 ) {
+            tempscore -= n ; 
+        }
+      }
+     rootElement.render(<App/>) ;
+    };
+    let comment ='' ;
+    function getcomment(e) {
+      comment=e.target.value ;
+      rootElement.render(<App/>);
+    }
+    let arr = [] ;
+    let f = '' ;
+   function aftersubmit(e) {
+    e.preventDefault() ;
+    if( setvalue == '4' || setvalue == '6' ) {
+      f = "score-content" ;
+    } 
+    else if( setvalue == "W"){
+        f = "score-content-w" ; 
+    }
+    else{
+        f = "score-content-s" ;
+    }
+    if( tempw > 10 ) {
+        arr.unshift(<div className ='content'>Game Over</div>)
+    }
+    else if( setvalue == ''){
+        arr.unshift(<div className ='content'>Press Score</div>)
+    }
+    else{
+    score = tempscore ;
+    w = tempw ;
+    arr.unshift(<div className="content"><span ><b className={f}>{setvalue}</b> : {comment}</span></div>) ;
+    comment='';
+    setvalue = '' ; 
+    }
+    rootElement.render(<App/>) ;
+   }
+    const App = () => {
+        return (
+            <>
+  <h1 id="heading">SCORE KEEPER APP </h1>
+  <h3 id="score">
+    SCORE : <span id="score-value">{score}</span>/<span id="wicket">{w}</span>
+  </h3>
+  <div className="grp-btn">
+    <span id="inner-grp">
+      <button id="zero" value ="0" onClick = {(e) => {update(0) }}>0</button>
+      <button id="one" value ="1" onClick = {(e) => {update(1) }}>1</button>
+      <button id="two" value ="2" onClick = {(e) => {update(2) }}>2</button>
+      <button id="three" value ="3" onClick = {(e) => {update(3) }}>3</button>
+      <button id="four" value ="4" onClick = {(e) => {update(4) }}>4</button>
+      <button id="five" value ="5" onClick = {(e) => {update(5) }}>5</button>
+      <button id="six" value ="6" onClick = {(e) => {update(6) }}>6</button>
+      <button id="wik"  onClick = {(e) => {update(-1) }}>W</button>
+    </span>
+  </div>
+  <form  onSubmit = {(e) => {aftersubmit(e)}} action="" id="comment-sec">
+    <input type="text" className="box"  defaultValue={setvalue} id="number-box" />
+    <input type="text" placeholder="Write a comment " className="box" id ="text-box"  value = {comment} onChange ={(e)=>{getcomment(e);}} onSubmit = {(e) => {e.preventDefault() ;}}  />
+    <button type="submit" id="submit-btn" onSubmit = {(e) => { tempw > 10 ? e.preventDefault(): ''}} >
+      Submit
+    </button>
+  </form>
+  <br />
+  <hr />{
+    arr.map((item) => {
+        return(
+            <>
+            {item}
+            </>
+        );
+    }
+)}
+  
+</>
+        ); 
+
+    }
+    const rootElement = ReactDOM.createRoot( document.getElementById("root")) ;
+    rootElement.render(<App/>);
+    </script>
+</body>
+</html>
